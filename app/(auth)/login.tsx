@@ -5,8 +5,8 @@ import { useRouter } from 'expo-router';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { showMessage } from 'react-native-flash-message';
-import { loginUser } from '../store/slices/authSlice';
-import { checkBiometricSupport, authenticateWithBiometric } from '../utils/auth';
+import { loginUser } from '../../store/slices/authSlice';
+import { checkBiometricSupport, authenticateWithBiometric } from '../../utils/auth';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');

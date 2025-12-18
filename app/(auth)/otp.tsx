@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { showMessage } from 'react-native-flash-message';
 import { OtpInput } from 'react-native-otp-entry';
-import { verifyOTP } from '../store/slices/authSlice';
+import { verifyOTP } from '../../store/slices/authSlice';
 
 export default function OTPScreen() {
   const [otp, setOtp] = useState('');

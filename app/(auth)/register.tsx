@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { showMessage } from 'react-native-flash-message';
 import PhoneInput from 'react-native-phone-number-input';
-import { registerUser } from '../store/slices/authSlice';
+import { registerUser } from '../../store/slices/authSlice';
 
 export default function RegisterScreen() {
   const [formData, setFormData] = useState({

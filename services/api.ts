@@ -1,60 +1,69 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { ENV } from '../config/env';
 import { getAuthToken } from '../utils/auth';
 
 const api = axios.create({
   baseURL: ENV.API_BASE_URL,
-  timeout: 10000,
+  timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
+// Attach auth token and request id, support cancellation via AbortController provided by caller
 api.interceptors.request.use(async (config) => {
   const token = await getAuthToken();
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers = config.headers || {};
+    (config.headers as any).Authorization = `Bearer ${token}`;
   }
+  (config.headers as any)['x-client'] = 'nexorasim-app';
   return config;
 });
 
+// Normalize errors and handle retry-after if provided
+api.interceptors.response.use(
+  (response) => response,
+  (error: AxiosError) => {
+    const status = error.response?.status;
+    const message = (error.response?.data as any)?.message || error.message;
+    const normalized = new Error(`API ${status || 'ERR'}: ${message}`);
+    (normalized as any).status = status;
+    return Promise.reject(normalized);
+  }
+);
+
 export const authAPI = {
-  login: (email: string, password: string) => 
-    api.post('/auth/login', { email, password }),
-  register: (data: any) => 
-    api.post('/auth/register', data),
-  verifyOTP: (phone: string, otp: string) => 
-    api.post('/auth/verify-otp', { phone, otp }),
-  sendOTP: (phone: string) => 
-    api.post('/auth/send-otp', { phone }),
-  googleAuth: (token: string) => 
-    api.post('/auth/google', { token }),
+  login: (email: string, password: string, signal?: AbortSignal) =>
+    api.post('/auth/login', { email, password }, { signal }),
+  register: (data: any, signal?: AbortSignal) => api.post('/auth/register', data, { signal }),
+  verifyOTP: (phone: string, otp: string, signal?: AbortSignal) =>
+    api.post('/auth/verify-otp', { phone, otp }, { signal }),
+  sendOTP: (phone: string, signal?: AbortSignal) => api.post('/auth/send-otp', { phone }, { signal }),
+  googleAuth: (token: string, signal?: AbortSignal) => api.post('/auth/google', { token }, { signal }),
 };
 
 export const esimAPI = {
-  getPlans: () => api.get('/esim/plans'),
-  getPlan: (id: string) => api.get(`/esim/plans/${id}`),
-  purchasePlan: (planId: string, paymentData: any) => 
-    api.post('/esim/purchase', { plan_id: planId, ...paymentData }),
-  getOrders: () => api.get('/esim/orders'),
-  activateESIM: (orderId: string) => 
-    api.post(`/esim/activate/${orderId}`),
+  getPlans: (signal?: AbortSignal) => api.get('/esim/plans', { signal }),
+  getPlan: (id: string, signal?: AbortSignal) => api.get(`/esim/plans/${id}`, { signal }),
+  purchasePlan: (planId: string, paymentData: any, signal?: AbortSignal) =>
+    api.post('/esim/purchase', { plan_id: planId, ...paymentData }, { signal }),
+  getOrders: (signal?: AbortSignal) => api.get('/esim/orders', { signal }),
+  activateESIM: (orderId: string, signal?: AbortSignal) => api.post(`/esim/activate/${orderId}`, undefined, { signal }),
 };
 
 export const paymentAPI = {
-  getMethods: () => api.get('/payment/methods'),
-  processPayment: (data: any) => 
-    api.post('/payment/process', data),
-  addFunds: (amount: number, method: string) => 
-    api.post('/payment/add-funds', { amount, method }),
+  getMethods: (signal?: AbortSignal) => api.get('/payment/methods', { signal }),
+  processPayment: (data: any, signal?: AbortSignal) => api.post('/payment/process', data, { signal }),
+  addFunds: (amount: number, method: string, signal?: AbortSignal) => api.post('/payment/add-funds', { amount, method }, { signal }),
 };
 
 export const userAPI = {
-  getProfile: () => api.get('/user/profile'),
-  updateProfile: (data: any) => api.put('/user/profile', data),
-  getWallet: () => api.get('/user/wallet'),
-  createTicket: (data: any) => api.post('/user/tickets', data),
-  getTickets: () => api.get('/user/tickets'),
+  getProfile: (signal?: AbortSignal) => api.get('/user/profile', { signal }),
+  updateProfile: (data: any, signal?: AbortSignal) => api.put('/user/profile', data, { signal }),
+  getWallet: (signal?: AbortSignal) => api.get('/user/wallet', { signal }),
+  createTicket: (data: any, signal?: AbortSignal) => api.post('/user/tickets', data, { signal }),
+  getTickets: (signal?: AbortSignal) => api.get('/user/tickets', { signal }),
 };
 
 export default api;

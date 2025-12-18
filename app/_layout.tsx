@@ -6,11 +6,11 @@ import { PaperProvider } from 'react-native-paper';
 import FlashMessage from 'react-native-flash-message';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-import './locales/i18n';
+import '../locales/i18n';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { store } from './store';
-import { registerForPushNotifications } from './utils/notifications';
+import { store } from '../store';
+import { registerForPushNotifications } from '../utils/notifications';
 
 export const unstable_settings = {
   anchor: '(tabs)',

@@ -4,10 +4,10 @@ import { Card, Text, Button, Chip, Searchbar } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'expo-router';
-import { fetchPlans, setSelectedPlan } from '../store/slices/esimSlice';
-import { ESIMPlan } from '../types';
-import PlanSelector3D from '../components/esim/PlanSelector3D';
-import { getExchangeRates, convertPrice, formatPrice, getSelectedCurrency } from '../utils/currency';
+import { fetchPlans, setSelectedPlan } from '../../store/slices/esimSlice';
+import { ESIMPlan } from '../../types';
+import PlanSelector3D from '../../components/esim/PlanSelector3D';
+import { getExchangeRates, convertPrice, formatPrice, getSelectedCurrency } from '../../utils/currency';
 
 export default function ESIMPlansScreen() {
   const [searchQuery, setSearchQuery] = useState('');
