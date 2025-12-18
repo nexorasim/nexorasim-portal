@@ -4,8 +4,8 @@ import { TextInput, Button, Text, Card } from 'react-native-paper';
 import { useRouter } from 'expo-router';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { showMessage } from 'react-native-flash-message';
-import PhoneInput from 'react-native-phone-number-input';
+
+
 import { registerUser } from '../../store/slices/authSlice';
 
 export default function RegisterScreen() {
@@ -23,7 +23,7 @@ export default function RegisterScreen() {
 
   const handleRegister = async () => {
     if (!formData.name || !formData.email || !formData.password || !formData.phone) {
-      showMessage({ message: 'Please fill all fields', type: 'warning' });
+      alert('Please fill all fields');
       return;
     }
     
@@ -32,7 +32,7 @@ export default function RegisterScreen() {
       await dispatch(registerUser(formData));
       router.push('/(auth)/otp');
     } catch (error) {
-      showMessage({ message: 'Registration failed', type: 'danger' });
+      alert('Registration failed');
     }
     setLoading(false);
   };
@@ -63,12 +63,13 @@ export default function RegisterScreen() {
             style={styles.input}
           />
           
-          <PhoneInput
-            defaultCode="MM"
-            layout="first"
-            onChangeFormattedText={(text) => setFormData({...formData, phone: text})}
-            containerStyle={styles.phoneContainer}
-            textContainerStyle={styles.phoneTextContainer}
+          <TextInput
+            label={t('phone')}
+            value={formData.phone}
+            onChangeText={(text) => setFormData({...formData, phone: text})}
+            mode="outlined"
+            keyboardType="phone-pad"
+            style={styles.input}
           />
           
           <TextInput

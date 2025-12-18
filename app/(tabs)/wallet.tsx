@@ -3,10 +3,10 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { Card, Text, Button, TextInput, List, Divider } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { showMessage } from 'react-native-flash-message';
-import { fetchPaymentMethods, processPayment } from '../store/slices/paymentSlice';
-import { PaymentMethod } from '../types';
-import { performFraudCheck } from '../utils/fraudDetection';
+
+import { fetchPaymentMethods, processPayment } from '../../store/slices/paymentSlice';
+import { PaymentMethod } from '../../types';
+import { performFraudCheck } from '../../utils/fraudDetection';
 
 export default function WalletScreen() {
   const [amount, setAmount] = useState('');
@@ -24,7 +24,7 @@ export default function WalletScreen() {
 
   const handleAddFunds = async () => {
     if (!amount || !selectedMethod) {
-      showMessage({ message: 'Please select amount and payment method', type: 'warning' });
+      alert('Please select amount and payment method');
       return;
     }
     
@@ -39,7 +39,7 @@ export default function WalletScreen() {
     });
     
     if (!fraudCheck.isValid) {
-      showMessage({ message: `Transaction blocked: ${fraudCheck.reasons.join(', ')}`, type: 'danger' });
+      alert(`Transaction blocked: ${fraudCheck.reasons.join(', ')}`);
       return;
     }
     
@@ -49,12 +49,12 @@ export default function WalletScreen() {
         method: selectedMethod,
         type: 'wallet_topup'
       }));
-      showMessage({ message: 'Funds added successfully', type: 'success' });
+      alert('Funds added successfully');
       setAmount('');
       setSelectedMethod(null);
       setShowAddFunds(false);
     } catch (error) {
-      showMessage({ message: 'Payment failed', type: 'danger' });
+      alert('Payment failed');
     }
   };
 

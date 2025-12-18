@@ -3,7 +3,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Provider } from 'react-redux';
 import { PaperProvider } from 'react-native-paper';
-import FlashMessage from 'react-native-flash-message';
+
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import '../locales/i18n';
@@ -33,7 +33,7 @@ export default function RootLayout() {
             <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
           </Stack>
           <StatusBar style="auto" />
-          <FlashMessage position="top" />
+
         </ThemeProvider>
       </PaperProvider>
     </Provider>

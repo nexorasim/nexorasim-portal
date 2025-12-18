@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const CURRENCY_KEY = 'selected_currency';
 const RATES_KEY = 'exchange_rates';
@@ -16,10 +16,10 @@ export const getExchangeRates = async () => {
   try {
     const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
     const data = await response.json();
-    await AsyncStorage.setItem(RATES_KEY, JSON.stringify(data.rates));
+    localStorage.setItem(RATES_KEY, JSON.stringify(data.rates));
     return data.rates;
   } catch {
-    const cached = await AsyncStorage.getItem(RATES_KEY);
+    const cached = localStorage.getItem(RATES_KEY);
     return cached ? JSON.parse(cached) : { USD: 1 };
   }
 };
@@ -36,9 +36,9 @@ export const formatPrice = (price: number, currency: string) => {
 };
 
 export const setSelectedCurrency = async (currency: string) => {
-  await AsyncStorage.setItem(CURRENCY_KEY, currency);
+  localStorage.setItem(CURRENCY_KEY, currency);
 };
 
 export const getSelectedCurrency = async () => {
-  return await AsyncStorage.getItem(CURRENCY_KEY) || 'USD';
+  return localStorage.getItem(CURRENCY_KEY) || 'USD';
 };

@@ -4,7 +4,7 @@ import { Card, Text, Button, List, Avatar, Divider } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'expo-router';
-import { logout } from '../store/slices/authSlice';
+import { logout } from '../../store/slices/authSlice';
 
 export default function ProfileScreen() {
   const [darkMode, setDarkMode] = useState(false);

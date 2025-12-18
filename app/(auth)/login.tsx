@@ -4,7 +4,7 @@ import { TextInput, Button, Text, Card } from 'react-native-paper';
 import { useRouter } from 'expo-router';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { showMessage } from 'react-native-flash-message';
+
 import { loginUser } from '../../store/slices/authSlice';
 import { checkBiometricSupport, authenticateWithBiometric } from '../../utils/auth';
 
@@ -24,7 +24,7 @@ export default function LoginScreen() {
 
   const handleLogin = async () => {
     if (!email || !password) {
-      showMessage({ message: 'Please fill all fields', type: 'warning' });
+      alert('Please fill all fields');
       return;
     }
     
@@ -33,7 +33,7 @@ export default function LoginScreen() {
       await dispatch(loginUser({ email, password }));
       router.replace('/(tabs)');
     } catch (error) {
-      showMessage({ message: 'Login failed', type: 'danger' });
+      alert('Login failed');
     }
     setLoading(false);
   };

@@ -4,11 +4,9 @@ import { Card, Text, Button, Chip, FAB } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'expo-router';
-import QRCode from 'react-native-qrcode-svg';
-import { fetchOrders } from '../store/slices/esimSlice';
-import { ESIMOrder } from '../types';
-import { getOfflineOrders, getOfflineQRCode } from '../utils/offline';
-import NetInfo from '@react-native-community/netinfo';
+
+import { fetchOrders } from '../../store/slices/esimSlice';
+import { ESIMOrder } from '../../types';
 
 export default function OrdersScreen() {
   const [refreshing, setRefreshing] = useState(false);
@@ -20,19 +18,8 @@ export default function OrdersScreen() {
   const { orders } = useSelector((state: any) => state.esim);
 
   useEffect(() => {
-    NetInfo.fetch().then(state => {
-      if (state.isConnected) {
-        dispatch(fetchOrders());
-      } else {
-        loadOfflineOrders();
-      }
-    });
+    dispatch(fetchOrders());
   }, []);
-
-  const loadOfflineOrders = async () => {
-    const offlineOrders = await getOfflineOrders();
-    setMessages(offlineOrders);
-  };
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -93,12 +80,9 @@ export default function OrdersScreen() {
         
         {showQR === item.id && (
           <View style={styles.qrContainer}>
-            <QRCode
-              value={item.qr_code}
-              size={200}
-              backgroundColor="white"
-              color="black"
-            />
+            <Text style={styles.qrCodeText}>
+              QR Code: {item.qr_code}
+            </Text>
             <Text variant="bodySmall" style={styles.qrText}>
               {t('scanToActivate')}
             </Text>
@@ -198,5 +182,10 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     bottom: 0,
+  },
+  qrCodeText: {
+    fontFamily: 'monospace',
+    fontSize: 12,
+    textAlign: 'center',
   },
 });

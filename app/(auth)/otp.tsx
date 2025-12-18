@@ -4,8 +4,8 @@ import { Button, Text, Card } from 'react-native-paper';
 import { useRouter } from 'expo-router';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { showMessage } from 'react-native-flash-message';
-import { OtpInput } from 'react-native-otp-entry';
+
+
 import { verifyOTP } from '../../store/slices/authSlice';
 
 export default function OTPScreen() {
@@ -26,7 +26,7 @@ export default function OTPScreen() {
 
   const handleVerifyOTP = async () => {
     if (otp.length !== 6) {
-      showMessage({ message: 'Please enter valid OTP', type: 'warning' });
+      alert('Please enter valid OTP');
       return;
     }
     
@@ -35,14 +35,14 @@ export default function OTPScreen() {
       await dispatch(verifyOTP({ phone: '+959123456789', otp }));
       router.replace('/(tabs)');
     } catch (error) {
-      showMessage({ message: 'OTP verification failed', type: 'danger' });
+      alert('OTP verification failed');
     }
     setLoading(false);
   };
 
   const handleResendOTP = () => {
     setCountdown(60);
-    showMessage({ message: 'OTP sent successfully', type: 'success' });
+    alert('OTP sent successfully');
   };
 
   return (
@@ -57,14 +57,14 @@ export default function OTPScreen() {
             We've sent a 6-digit code to your phone
           </Text>
           
-          <OtpInput
-            numberOfDigits={6}
-            onTextChange={setOtp}
-            focusColor="#6200ee"
-            theme={{
-              containerStyle: styles.otpContainer,
-              pinCodeContainerStyle: styles.otpInput,
-            }}
+          <TextInput
+            label="Enter 6-digit OTP"
+            value={otp}
+            onChangeText={setOtp}
+            mode="outlined"
+            keyboardType="numeric"
+            maxLength={6}
+            style={styles.otpInput}
           />
           
           <Button
