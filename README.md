@@ -2,7 +2,7 @@
 
 A comprehensive cross-platform eSIM management and sales system with WordPress backend and React Native (Expo) frontend.
 
-## 🚀 Features
+## Features
 
 ### Mobile App (React Native + Expo)
 - **Multi-platform**: iOS, Android, and Web from single codebase
@@ -20,7 +20,7 @@ A comprehensive cross-platform eSIM management and sales system with WordPress b
 - **Payment Processing**: PCI-compliant secure transactions
 - **Order Management**: Complete order lifecycle tracking
 
-## 📱 Tech Stack
+## Tech Stack
 
 ### Frontend
 - React Native + Expo SDK 54
@@ -36,7 +36,7 @@ A comprehensive cross-platform eSIM management and sales system with WordPress b
 - JWT authentication
 - Payment gateway integrations
 
-## 🛠 Installation
+## Installation
 
 ### Prerequisites
 - Node.js 18+
@@ -87,7 +87,7 @@ cp -r wordpress-plugin /path/to/wordpress/wp-content/plugins/nexorasim
 - Add payment gateway API keys
 - Configure eSIM plans
 
-## 🔧 Configuration
+## Configuration
 
 ### Firebase Setup
 1. Create Firebase project
@@ -104,7 +104,7 @@ Configure API keys in WordPress admin:
 - KBZ Pay API Key
 - TransactEase API Key
 
-## 📊 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /wp-json/nexorasim/v1/auth/login`
@@ -121,7 +121,7 @@ Configure API keys in WordPress admin:
 - `POST /wp-json/nexorasim/v1/payment/process`
 - `POST /wp-json/nexorasim/v1/payment/add-funds`
 
-## 🔐 Security Features
+## Security Features
 
 - JWT token-based authentication
 - Encrypted API communication
@@ -129,7 +129,7 @@ Configure API keys in WordPress admin:
 - Biometric authentication support
 - Secure credential storage
 
-## 🌍 Internationalization
+## Internationalization
 
 The app supports multiple languages:
 - English (default)
@@ -137,7 +137,7 @@ The app supports multiple languages:
 
 Add new languages by creating translation files in `/locales/`
 
-## 📱 Deployment
+## Deployment
 
 ### Mobile App
 ```bash
@@ -157,7 +157,7 @@ npm run build:web
 # (Firebase Hosting, Vercel, etc.)
 ```
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run tests
@@ -170,7 +170,7 @@ npm run lint
 npm run type-check
 ```
 
-## 📈 Analytics Integration
+## Analytics Integration
 
 The system supports:
 - Google Analytics
@@ -178,7 +178,7 @@ The system supports:
 - Custom event tracking
 - Revenue analytics
 
-## 🎨 UI/UX Features
+## UI/UX Features
 
 - Material Design 3 components
 - Dark/Light mode support
@@ -186,25 +186,25 @@ The system supports:
 - Responsive design
 - Accessibility compliance
 
-## 🔄 State Management
+## State Management
 
 Redux Toolkit slices:
 - `authSlice`: User authentication
 - `esimSlice`: eSIM plans and orders
 - `paymentSlice`: Payment methods and transactions
 
-## 📞 Support
+## Support
 
 For technical support:
 - Create GitHub issues
 - Email: support@nexorasim.com
 - Documentation: [docs.nexorasim.com]
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create feature branch
@@ -212,7 +212,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 4. Push to branch
 5. Create Pull Request
 
-## 🚀 Roadmap
+## Roadmap
 
 - [ ] Offline QR code access
 - [ ] 3D plan selection interface
@@ -223,4 +223,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-Built with ❤️ by the NexoraSIM Team
+Built by the NexoraSIM Team

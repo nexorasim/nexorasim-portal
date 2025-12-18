@@ -1,10 +1,10 @@
 # NexoraSIM Repository Setup
 
-## 🚀 Repository Ready for GitHub
+## Repository Ready for GitHub
 
 The complete NexoraSIM system has been prepared for the GitHub repository: `git@github.com:nexorasim/nexorasim-portal.git`
 
-### 📁 **Repository Structure**
+### Repository Structure
 ```
 nexorasim-portal/
 ├── .github/workflows/     # CI/CD pipelines
@@ -23,7 +23,7 @@ nexorasim-portal/
 └── README.md            # Project documentation
 ```
 
-### 🔧 **Setup Instructions**
+### Setup Instructions
 
 1. **Clone Repository**
 ```bash
@@ -50,7 +50,7 @@ npm run android    # Android emulator
 npm run web        # Web browser
 ```
 
-### 🚀 **Deployment Commands**
+### Deployment Commands
 
 **Mobile Apps:**
 ```bash
@@ -64,9 +64,9 @@ npm run build:web                  # Build web version
 firebase deploy --only hosting    # Deploy to Firebase
 ```
 
-### 📊 **Features Included**
+### Features Included
 
-✅ **Complete eSIM Management System**
+Complete eSIM Management System
 - Cross-platform mobile app (iOS/Android/Web)
 - WordPress backend with REST API
 - Real-time analytics dashboard
@@ -79,13 +79,13 @@ firebase deploy --only hosting    # Deploy to Firebase
 - Push notifications
 - Multi-language support (English/Burmese)
 
-✅ **Payment Integration**
+Payment Integration
 - Myanmar gateways (WavePay, AYA Pay, KBZ Pay, TransactEase)
 - International cards (Visa/Mastercard)
 - Wallet system with top-up
 - PCI-compliant processing
 
-✅ **Production Ready**
+Production Ready
 - CI/CD pipelines with GitHub Actions
 - Automated testing and deployment
 - Performance monitoring
@@ -93,7 +93,7 @@ firebase deploy --only hosting    # Deploy to Firebase
 - Security best practices
 - SEO optimization
 
-### 🔐 **Required Secrets**
+### Required Secrets
 
 Add these secrets to your GitHub repository:
 
@@ -103,7 +103,7 @@ FIREBASE_SERVICE_ACCOUNT      # Firebase service account JSON
 GITHUB_TOKEN                  # Automatically provided
 ```
 
-### 📱 **App Store Information**
+### App Store Information
 
 **iOS App Store:**
 - Bundle ID: `com.nexorasim.app`
@@ -115,14 +115,14 @@ GITHUB_TOKEN                  # Automatically provided
 - App Name: "NexoraSIM - Global eSIM Data Plans"
 - Category: Travel & Local
 
-### 🌐 **Live URLs**
+### Live URLs
 
 Once deployed:
 - **Web App**: https://nexorasim.web.app
 - **Admin Panel**: https://app.nexorasim.com/wp-admin
 - **API Base**: https://app.nexorasim.com/wp-json/nexorasim/v1
 
-### 📞 **Support**
+### Support
 
 - **Documentation**: Complete setup guides included
 - **Issues**: Use GitHub Issues for bug reports
@@ -130,6 +130,6 @@ Once deployed:
 
 ---
 
-**Status**: ✅ Repository ready for immediate deployment
+**Status**: Repository ready for immediate deployment
 **Last Updated**: December 2024
 **Version**: 1.0.0 (Production Ready)
