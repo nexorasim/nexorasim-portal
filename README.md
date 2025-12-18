@@ -1,53 +1,226 @@
-> Edited for use in IDX on 07/09/12
+# NexoraSIM - Complete eSIM Management System
 
-# Welcome to your Expo app 👋
+A comprehensive cross-platform eSIM management and sales system with WordPress backend and React Native (Expo) frontend.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 🚀 Features
 
-## Get started
+### Mobile App (React Native + Expo)
+- **Multi-platform**: iOS, Android, and Web from single codebase
+- **Authentication**: Email/password, phone OTP, Google Sign-In, biometrics
+- **eSIM Management**: Browse plans, instant purchase, QR code activation
+- **Payment Integration**: Myanmar gateways (WavePay, AYA Pay, KBZ Pay, TransactEase) + Visa/Mastercard
+- **Wallet System**: Credit top-up and balance management
+- **Multi-language**: English and Burmese support
+- **Real-time**: Push notifications and live updates
 
-#### Android
+### WordPress Backend
+- **WooCommerce Integration**: Complete e-commerce functionality
+- **REST API**: Secure JWT-based authentication
+- **Admin Dashboard**: User management, sales analytics, eSIM provisioning
+- **Payment Processing**: PCI-compliant secure transactions
+- **Order Management**: Complete order lifecycle tracking
 
-Android previews are defined as a `workspace.onStart` hook and started as a vscode task when the workspace is opened/started.
+## 📱 Tech Stack
 
-Note, if you can't find the task, either:
-- Rebuild the environment (using command palette: `IDX: Rebuild Environment`), or
-- Run `npm run android -- --tunnel` command manually run android and see the output in your terminal. The device should pick up this new command and switch to start displaying the output from it.
+### Frontend
+- React Native + Expo SDK 54
+- Redux Toolkit for state management
+- React Native Paper for UI components
+- Firebase for authentication and notifications
+- i18next for internationalization
 
-In the output of this command/task, you'll find options to open the app in a
+### Backend
+- WordPress + WooCommerce
+- Custom REST API endpoints
+- MySQL database
+- JWT authentication
+- Payment gateway integrations
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠 Installation
 
-You'll also find options to open the app's developer menu, reload the app, and more.
+### Prerequisites
+- Node.js 18+
+- Expo CLI
+- WordPress 6.0+
+- WooCommerce 8.0+
 
-#### Web
+### Mobile App Setup
 
-Web previews will be started and managred automatically. Use the toolbar to manually refresh.
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+1. **Clone and install dependencies**
 ```bash
-npm run reset-project
+git clone <repository>
+cd nexorasim
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. **Environment Configuration**
+```bash
+cp .env.example .env
+# Edit .env with your configuration
+```
 
-## Learn more
+3. **Start development server**
+```bash
+# iOS
+npm run ios
 
-To learn more about developing your project with Expo, look at the following resources:
+# Android
+npm run android
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Web
+npm run web
+```
 
-## Join the community
+### WordPress Plugin Setup
 
-Join our community of developers creating universal apps.
+1. **Upload plugin**
+```bash
+cp -r wordpress-plugin /path/to/wordpress/wp-content/plugins/nexorasim
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+2. **Activate plugin**
+- Go to WordPress Admin → Plugins
+- Activate "NexoraSIM eSIM Management"
+
+3. **Configure settings**
+- Navigate to NexoraSIM settings
+- Add payment gateway API keys
+- Configure eSIM plans
+
+## 🔧 Configuration
+
+### Firebase Setup
+1. Create Firebase project
+2. Enable Authentication, Firestore, and Cloud Messaging
+3. Download configuration files:
+   - `google-services.json` (Android)
+   - `GoogleService-Info.plist` (iOS)
+4. Update environment variables
+
+### Payment Gateways
+Configure API keys in WordPress admin:
+- WavePay API Key
+- AYA Pay API Key
+- KBZ Pay API Key
+- TransactEase API Key
+
+## 📊 API Endpoints
+
+### Authentication
+- `POST /wp-json/nexorasim/v1/auth/login`
+- `POST /wp-json/nexorasim/v1/auth/register`
+- `POST /wp-json/nexorasim/v1/auth/verify-otp`
+
+### eSIM Management
+- `GET /wp-json/nexorasim/v1/esim/plans`
+- `POST /wp-json/nexorasim/v1/esim/purchase`
+- `GET /wp-json/nexorasim/v1/esim/orders`
+
+### Payment Processing
+- `GET /wp-json/nexorasim/v1/payment/methods`
+- `POST /wp-json/nexorasim/v1/payment/process`
+- `POST /wp-json/nexorasim/v1/payment/add-funds`
+
+## 🔐 Security Features
+
+- JWT token-based authentication
+- Encrypted API communication
+- PCI-compliant payment processing
+- Biometric authentication support
+- Secure credential storage
+
+## 🌍 Internationalization
+
+The app supports multiple languages:
+- English (default)
+- Burmese (Myanmar)
+
+Add new languages by creating translation files in `/locales/`
+
+## 📱 Deployment
+
+### Mobile App
+```bash
+# Build for production
+eas build --platform all
+
+# Submit to app stores
+eas submit --platform all
+```
+
+### Web App
+```bash
+# Build web version
+npm run build:web
+
+# Deploy to hosting service
+# (Firebase Hosting, Vercel, etc.)
+```
+
+## 🧪 Testing
+
+```bash
+# Run tests
+npm test
+
+# Run linting
+npm run lint
+
+# Type checking
+npm run type-check
+```
+
+## 📈 Analytics Integration
+
+The system supports:
+- Google Analytics
+- Firebase Analytics
+- Custom event tracking
+- Revenue analytics
+
+## 🎨 UI/UX Features
+
+- Material Design 3 components
+- Dark/Light mode support
+- Smooth animations
+- Responsive design
+- Accessibility compliance
+
+## 🔄 State Management
+
+Redux Toolkit slices:
+- `authSlice`: User authentication
+- `esimSlice`: eSIM plans and orders
+- `paymentSlice`: Payment methods and transactions
+
+## 📞 Support
+
+For technical support:
+- Create GitHub issues
+- Email: support@nexorasim.com
+- Documentation: [docs.nexorasim.com]
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch
+3. Commit changes
+4. Push to branch
+5. Create Pull Request
+
+## 🚀 Roadmap
+
+- [ ] Offline QR code access
+- [ ] 3D plan selection interface
+- [ ] Real-time analytics dashboard
+- [ ] Multi-currency support
+- [ ] Advanced fraud detection
+- [ ] AI-powered customer support
+
+---
+
+Built with ❤️ by the NexoraSIM Team
