@@ -5,8 +5,8 @@
  */
 
 // Database Configuration
-define('DB_NAME', 'nexorasim_db');
-define('DB_USER', 'nexorasim@gmail.com');
+define('DB_NAME', 'u755220709_nexorasim');
+define('DB_USER', 'u755220709_nexorasim');
 define('DB_PASSWORD', 'Melilite7%');
 define('DB_HOST', 'localhost');
 
